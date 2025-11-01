@@ -1,0 +1,8 @@
+flask
+sentence-transformers
+scikit-learn
+pdfminer.six
+python-docx
+pandas
+werkzeug
+transformers

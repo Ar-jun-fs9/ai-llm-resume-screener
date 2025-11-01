@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Powered Resume Screener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <script src="../static/js/tailwindconfig.js"></script>
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen"
+  >
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header Card -->
+        <div
+          class="bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in"
+        >
+          <div
+            class="bg-gradient-to-r from-blue-600 to-purple-600 text-center py-8"
+          >
+            <h1 class="text-4xl font-bold text-white mb-2">
+              <i class="fas fa-robot mr-3"></i>
+              AI-Powered Resume Screener
+            </h1>
+            <p class="text-blue-100 text-lg">
+              Upload resumes and job description to rank candidates using AI
+            </p>
+          </div>
+
+          <div class="p-8">
+            <form id="resumeForm" enctype="multipart/form-data">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Resume Upload Section -->
+                <div class="space-y-4">
+                  <label class="block text-lg font-semibold text-gray-800">
+                    <i class="fas fa-file-upload mr-2 text-blue-500"></i>
+                    Upload Resumes (PDF/DOCX)
+                  </label>
+                  <div
+                    class="upload-zone rounded-xl p-8 text-center cursor-pointer border-2 border-dashed border-blue-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300"
+                    id="resumeUpload"
+                  >
+                    <input
+                      type="file"
+                      id="resumes"
+                      name="resumes"
+                      multiple
+                      accept=".pdf,.docx"
+                      class="hidden"
+                    />
+                    <div class="upload-content">
+                      <i
+                        class="fas fa-cloud-upload-alt text-4xl text-blue-500 mb-4"
+                      ></i>
+                      <p class="text-gray-700 font-medium mb-2">
+                        Drag and drop resume files here
+                      </p>
+                      <p class="text-gray-500 text-sm mb-2">
+                        or click to select files
+                      </p>
+                      <p class="text-gray-400 text-xs">Supported: PDF, DOCX</p>
+                    </div>
+                  </div>
+                  <div
+                    id="resumeFiles"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                  ></div>
+                </div>
+
+                <!-- Job Description Upload Section -->
+                <div class="space-y-4">
+                  <label class="block text-lg font-semibold text-gray-800">
+                    <i class="fas fa-file-alt mr-2 text-green-500"></i>
+                    Job Description (TXT)
+                  </label>
+                  <div
+                    class="upload-zone rounded-xl p-8 text-center cursor-pointer border-2 border-dashed border-green-300 hover:border-green-500 hover:bg-green-50 transition-all duration-300"
+                    id="jobUpload"
+                  >
+                    <input
+                      type="file"
+                      id="job_description"
+                      name="job_description"
+                      accept=".txt"
+                      class="hidden"
+                    />
+                    <div class="upload-content">
+                      <i
+                        class="fas fa-file-upload text-4xl text-green-500 mb-4"
+                      ></i>
+                      <p class="text-gray-700 font-medium mb-2">
+                        Drag and drop job description here
+                      </p>
+                      <p class="text-gray-500 text-sm mb-2">
+                        or click to select file
+                      </p>
+                      <p class="text-gray-400 text-xs">Format: TXT only</p>
+                    </div>
+                  </div>
+                  <div id="jobFile" class="space-y-2"></div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button
+                  type="button"
+                  class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  id="rankBtn"
+                  disabled
+                >
+                  <i class="fas fa-search mr-2"></i>
+                  Rank Candidates
+                </button>
+              </div>
+            </form>
+
+            <!-- Loading Spinner -->
+            <div
+              class="loading-spinner text-center mt-8 hidden"
+              id="loadingSpinner"
+            >
+              <div
+                class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm text-blue-600"
+              >
+                <svg
+                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Processing resumes and ranking candidates...
+              </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="mt-8 hidden animate-slide-up">
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div
+                  class="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4"
+                >
+                  <h3 class="text-xl font-bold">
+                    <i class="fas fa-trophy mr-2"></i>
+                    Ranked Candidates
+                  </h3>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table
+                    class="min-w-full divide-y divide-gray-200"
+                    id="resultsTable"
+                  >
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Rank
+                        </th>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Candidate
+                        </th>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Similarity Score
+                        </th>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      id="resultsBody"
+                      class="bg-white divide-y divide-gray-200"
+                    ></tbody>
+                  </table>
+                </div>
+
+                <div class="p-4 bg-gray-50 flex flex-wrap gap-4 justify-center">
+                  <button
+                    class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                    id="downloadBtn"
+                  >
+                    <i class="fas fa-download mr-2"></i>Download Results (CSV)
+                  </button>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                    id="clearPageBtn"
+                  >
+                    <i class="fas fa-trash-alt mr-2"></i>Clear Page
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div
+      id="summaryModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-slide-up"
+      >
+        <div
+          class="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-6 flex justify-between items-center"
+        >
+          <h2 class="text-2xl font-bold">
+            <i class="fas fa-robot mr-2"></i>
+            AI Resume Summary
+          </h2>
+          <button
+            type="button"
+            class="text-white hover:text-gray-200 text-2xl"
+            onclick="closeModal()"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+          <div id="summaryLoading" class="text-center py-8">
+            <div
+              class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm text-blue-600"
+            >
+              <svg
+                class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Generating AI summary...
+            </div>
+          </div>
+
+          <div id="summaryContent" class="hidden space-y-4">
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+              <h4
+                id="summaryCandidateName"
+                class="text-blue-800 font-semibold"
+              ></h4>
+            </div>
+
+            <div class="space-y-3">
+              <h5 class="text-lg font-semibold text-gray-800 flex items-center">
+                <i class="fas fa-brain mr-2 text-purple-500"></i>
+                AI Analysis & Summary
+              </h5>
+              <div
+                id="candidateSummary"
+                class="bg-gray-50 border rounded-lg p-4 whitespace-pre-wrap"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            id="summaryError"
+            class="hidden bg-red-50 border border-red-200 rounded-lg p-4"
+          >
+            <div class="flex items-center text-red-800">
+              <i class="fas fa-exclamation-triangle mr-2"></i>
+              <span id="summaryErrorMessage"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-4 text-right">
+          <button
+            type="button"
+            class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+            onclick="closeModal()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../static/js/index.js"></script>
+</html>
