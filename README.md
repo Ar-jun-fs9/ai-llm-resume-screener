@@ -69,8 +69,8 @@ Successfully loaded model: all-MiniLM-L6-v2
 
 ```bash
 # 1. Clone or download the project
-git clone <repository-url>
-cd resume-screener
+git clone https://github.com/Ar-jun-fs9/ai-llm-resume-screener.git
+cd ai-llm-resume-screener
 
 # 2. Install dependencies
 pip install -r requirements.txt
