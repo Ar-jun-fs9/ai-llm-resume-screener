@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🤖 AI-Powered Resume Screener with Local LLM
+# 🤖 AI-Powered Resume Screener with LLM
 
 **Smart candidate ranking and AI-powered resume summarization using TinyLlama**
 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-Web%20Framework-green.svg)](https://flask.palletsprojects.com)
-[![Local LLM](https://img.shields.io/badge/Local%20LLM-TinyLlama-orange.svg)](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
+[![Local LLM](https://img.shields.io/badge/%20LLM-TinyLlama-orange.svg)](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
 
 _Process resumes, rank candidates by job fit, and generate AI summaries - all locally on your machine_
 
@@ -30,8 +30,8 @@ _Process resumes, rank candidates by job fit, and generate AI summaries - all lo
 **When you first run the application after cloning/downloading, you'll see these models being downloaded:**
 
 ```
-Successfully loaded model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
-Successfully loaded model: all-MiniLM-L6-v2
+Successfully loaded LLM model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+Successfully loaded Embedding model: all-MiniLM-L6-v2
 ```
 
 ### 📦 Model Download Information
@@ -175,19 +175,6 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 - **☁️ Cloud Integration**: Optional cloud model support
 
 ---
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit pull requests or open issues.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
 ## 🙏 Acknowledgments
 
 - **TinyLlama Team**: For the lightweight chat model
@@ -197,7 +184,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Built with ❤️ for efficient recruitment**
+**Built with**
 
 [![Made with Python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://python.org)
-[![Powered by Local AI](https://img.shields.io/badge/Powered%20by-Local%20AI-orange.svg)](#)
+[![License](https://img.shields.io/badge/license-MIT-black.svg?labelColor=orange)](#)
+
+
