@@ -1,5 +1,6 @@
 <div align="center">
-
+<a name="top"></a>
+   
 # 🤖 AI-Powered Resume Screener with LLM
 
 **Smart candidate ranking and AI-powered resume summarization using TinyLlama**
@@ -191,8 +192,11 @@ tiny-llama-rag/
 [![License](https://img.shields.io/badge/license-MIT-black.svg?labelColor=orange)](#)
 
 <div align="center">
-  **[⬆ Back to Top](#ai-powered-resume-screener-with-llm)**
+   
+  **[⬆ Back to Top](#top)**
+  
 </div>
+
 
 
 
