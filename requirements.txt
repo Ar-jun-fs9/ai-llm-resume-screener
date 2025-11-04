@@ -6,3 +6,6 @@ python-docx
 pandas
 werkzeug
 transformers
+requests
+python-dotenv
+google-generativeai

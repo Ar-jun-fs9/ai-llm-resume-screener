@@ -6,6 +6,10 @@ from werkzeug.utils import secure_filename
 import subprocess
 import json
 import time
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add src to Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +20,7 @@ from src import (
     similarity,
     rank_candidates,
     utils,
-    local_llm,
+    llm,
 )
 
 app = Flask(__name__)
@@ -26,7 +30,6 @@ os.makedirs(app.config["OUTPUTS_FOLDER"], exist_ok=True)
 
 # Load models at startup
 embeddings.load_models_at_startup()
-local_llm.load_models_at_startup()
 
 ALLOWED_EXTENSIONS = {"pdf", "docx", "txt"}
 
@@ -213,8 +216,8 @@ def generate_summary():
                 400,
             )
 
-        # Generate summary using local LLM
-        summary = local_llm.generate_resume_summary(resume_text, job_text)
+        # Generate summary using Google Gemini
+        summary = llm.generate_summary(resume_text, job_text, "Data Analyst")
 
         # Add terminal message for processing time
         end_time = time.time()

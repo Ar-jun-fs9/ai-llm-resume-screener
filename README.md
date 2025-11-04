@@ -1,16 +1,20 @@
 <div align="center">
 <a name="top"></a>
    
-# 🤖 AI-Powered Resume Screener with LLM
+# 🤖 AI-Powered Resume Screener with Google Gemini
 
-**Smart candidate ranking and AI-powered resume summarization using TinyLlama**
+**Smart candidate ranking and AI-powered resume summarization using Google Gemini 2.0 Flash**
 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-Web%20Framework-green.svg)](https://flask.palletsprojects.com)
-[![Local LLM](https://img.shields.io/badge/%20LLM-TinyLlama-orange.svg)](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
+[![Gemini 2.0 Flash](https://img.shields.io/badge/Gemini-2.0%20Flash-4285F4.svg)](https://ai.google.dev/gemini-api/docs)
 [![Embedding Model](https://img.shields.io/badge/Embedding--Model-all--MiniLM--L6--v2-lightgrey.svg)](https://www.sbert.net/docs/pretrained_models.html#sentence-transformersall-minilm-l6-v2)
 
-_Process resumes, rank candidates by job fit, and generate AI summaries - all locally on your machine_
+_Process resumes, rank candidates by job fit, and generate AI summaries with Google Gemini 2.0 Flash_
+
+![Page](assets/page.png)
+![Similarity](assets/similarity.png)
+![Summary](assets/summary.png)
 
 </div>
 
@@ -21,40 +25,41 @@ _Process resumes, rank candidates by job fit, and generate AI summaries - all lo
 - **📄 Resume Processing**: Upload PDF/DOCX resume files
 - **📝 Job Description Analysis**: Upload job requirements in TXT format
 - **🎯 AI-Powered Ranking**: Semantic similarity ranking using advanced embeddings
-- **🤖 Local LLM Summarization**: AI-generated summaries with TinyLlama
+- **🤖 Google Gemini Summarization**: AI-generated summaries with Google Gemini 2.0 Flash
 - **📊 CSV Export**: Download complete ranking results
-- **🔒 Privacy-First**: All processing happens locally, no data sent externally
+- **⚡ High Performance**: Fast inference with Google's state-of-the-art LLM
 
 ---
 
 ## ⚠️ First Run Important Notes
 
-**When you first run the application after cloning/downloading, you'll see these models being downloaded:**
+**When you first run the application, you'll need to set up your Google Gemini API key:**
 
 ```
-Successfully loaded LLM model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+Successfully configured Google Gemini API
 Successfully loaded Embedding model: all-MiniLM-L6-v2
 ```
 
-### 📦 Model Download Information
+### 📋 Setup Requirements
 
-| Model                        | Size   | Purpose                      | Cache Location  |
-| ---------------------------- | ------ | ---------------------------- | --------------- |
-| **TinyLlama-1.1B-Chat-v1.0** | ~1-2GB | LLM for resume summarization | `.cache` folder |
-| **all-MiniLM-L6-v2**         | ~100MB | Semantic embeddings          | `.cache` folder |
+| Component               | Requirement            | Purpose                      |
+| ----------------------- | ---------------------- | ---------------------------- |
+| **Gemini API Key**      | Google AI Studio       | LLM for resume summarization |
+| **all-MiniLM-L6-v2**    | ~100MB                 | Semantic embeddings          |
+| **Internet Connection** | Required for API calls | Google Gemini API access     |
 
 **Important:**
 
-- **Download Frequency**: Models are downloaded **only once** and cached permanently
-- **First Run Time**: 5-15 minutes depending on your internet connection
-- **Subsequent Runs**: Models load instantly from cache
-- **Disk Space**: ~2GB total for all models
+- **API Usage**: Requires active internet connection and valid Google Gemini API key
+- **Cost**: Minimal costs for Google Gemini API calls (pay-per-use)
+- **Setup Time**: 5-10 minutes for Google AI Studio setup and API key generation
+- **Privacy**: Resume data is sent to Google for processing (note: no data stored by Google)
 
 ### ⚡ Performance Expectations
 
-- **Current Summary Generation**: ~1 minute per candidate (CPU-only inference)
-- **Hardware Consideration**: Optimized for laptop specs - higher-end systems may experience lag
-- **Future Updates**: Will optimize to achieve sub-1-second summary generation
+- **Summary Generation**: ~2-5 seconds per candidate (Google API inference)
+- **API Response Time**: Fast inference with Google's optimized infrastructure
+- **Scalability**: Handles multiple requests efficiently through Google's cloud infrastructure
 
 ---
 
@@ -63,9 +68,9 @@ Successfully loaded Embedding model: all-MiniLM-L6-v2
 ### Prerequisites
 
 - Python 3.7+
-- 8GB+ RAM (for TinyLlama model loading)
-- ~2GB disk space for model downloads
-- CPU-only (no GPU required)
+- Internet connection (for Google Gemini API calls)
+- Google Gemini API key (free tier available)
+- ~200MB disk space for embedding model
 
 ### Quick Start
 
@@ -77,12 +82,22 @@ cd ai-llm-resume-screener
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. First run (models will download automatically)
+# 3. Get your Google Gemini API key:
+#    - Visit: https://aistudio.google.com/
+#    - Create account and generate API key
+#    - Copy the API key
+
+# 4. Create .env file and add your API key
+echo "GEMINI_API_KEY=your_api_key_here" > .env
+
+# 5. Run the application
 python app.py
 
-# 4. Open your browser
+# 6. Open your browser
 # Navigate to http://localhost:5000
 ```
+
+**Note**: Replace `your_api_key_here` with your actual Google Gemini API key.
 
 ---
 
@@ -108,15 +123,16 @@ The application uses **cosine similarity** to rank candidates based on semantic 
 
 ### 2. AI-Powered Summarization
 
-Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
+Using **Google Gemini 2.0 Flash** for advanced LLM analysis:
 
-1. **Context Preparation**: Resume and job description are prepared for LLM input
-2. **Prompt Engineering**: Structured prompt guides the AI to analyze candidate fit
-3. **Text Generation**: TinyLlama generates detailed assessment including:
-   - Key candidate skills
-   - Overall role compatibility
-   - Strengths and potential gaps
-   - Structured evaluation
+1. **Context Preparation**: Resume and job description are prepared for Gemini API
+2. **Prompt Engineering**: Structured prompt guides Google Gemini to analyze candidate fit
+3. **Text Generation**: Google Gemini generates detailed assessment including:
+   - Key candidate skills and experience
+   - Overall role compatibility assessment
+   - Strengths and potential gaps analysis
+   - Actionable hiring recommendations
+   - Professional evaluation suitable for HR review
 
 ---
 
@@ -135,7 +151,8 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 ### Step 3: Generate Summaries
 
 - Click **"Summarize"** button for any candidate
-- AI generates detailed assessment using local TinyLlama model
+- AI generates detailed assessment using Google Gemini 2.0 Flash
+- Fast processing with Google's advanced LLM capabilities
 
 ### Step 4: Export Results
 
@@ -146,15 +163,17 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 ## 🏗️ Project Structure
 
 ```
-tiny-llama-rag/
+ai-llm-resume-screener/
 ├── 📄 app.py                          # Main Flask application
+├── 📄 .env                            # Environment variables (API keys)
 ├── 📁 src/                            # Core Python modules
 │   ├── 📄 extract_text.py             # PDF/DOCX text extraction
 │   ├── 📄 preprocess.py               # Text preprocessing & cleaning
 │   ├── 📄 embeddings.py               # Sentence transformer embeddings
 │   ├── 📄 similarity.py               # Cosine similarity calculation
 │   ├── 📄 rank_candidates.py          # Candidate ranking & CSV export
-│   └── 📄 local_llm.py                # TinyLlama integration
+│   ├── 📄 llm.py                      # Google Gemini integration
+│   └── 📄 utils.py                    # Utility functions
 ├── 📁 templates/
 │   └── 📄 index.html                  # Main web interface
 ├── 📁 static/
@@ -178,9 +197,10 @@ tiny-llama-rag/
 - **☁️ Cloud Integration**: Optional cloud model support
 
 ---
+
 ## 🙏 Acknowledgments
 
-- **TinyLlama Team**: For the lightweight chat model
+- **Google AI Team**: For Google Gemini 2.0 Flash API
 - **Sentence Transformers**: For semantic embedding capabilities
 - **Flask Community**: For the excellent web framework
 - **Hugging Face**: For model hosting and transformers library
@@ -196,9 +216,3 @@ tiny-llama-rag/
   **[⬆ Back to Top](#top)**
   
 </div>
-
-
-
-
-
-

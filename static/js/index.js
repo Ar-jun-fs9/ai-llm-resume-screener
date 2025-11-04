@@ -268,33 +268,50 @@ async function summarizeCandidate(candidateName) {
     const data = await response.json();
 
     if (data.summary) {
-      // Populate modal with data
-      document.getElementById(
-        "summaryCandidateName"
-      ).textContent = `Candidate: ${candidateName}`;
-      document.getElementById("candidateSummary").textContent = data.summary;
+  // Populate modal with candidate name
+  document.getElementById(
+    "summaryCandidateName"
+  ).textContent = `Candidate: ${candidateName}`;
 
-      // Show content, hide loading
-      document.getElementById("summaryLoading").classList.add("hidden");
-      document.getElementById("summaryContent").classList.remove("hidden");
-    } else {
-      // Show error
-      document.getElementById("summaryErrorMessage").textContent =
-        data.error || "Unknown error occurred";
-      document.getElementById("summaryLoading").classList.add("hidden");
-      document.getElementById("summaryError").classList.remove("hidden");
+  // Convert summary text to HTML with bold numbered headings
+  let htmlText = data.summary.replace(
+    /^(\d+\.\s.+)$/gm, // Match lines like "1. Candidate Profile Summary"
+    '<strong>$1</strong>'
+  );
+
+  // Replace hyphens in Recommendations section with bullet points
+  htmlText = htmlText.replace(
+    /(\d+\. Recommendations[\s\S]*?)(?=\n\d+\.|$)/gm, // Match Recommendations block
+    function (match) {
+      return match.replace(/^\s*-\s/gm, '• ');
     }
-  } catch (error) {
-    // Show error
-    document.getElementById("summaryErrorMessage").textContent =
-      "Network error: " + error.message;
-    document.getElementById("summaryLoading").classList.add("hidden");
-    document.getElementById("summaryError").classList.remove("hidden");
-  } finally {
-    // Restore button state
-    button.disabled = false;
-    button.innerHTML = originalText;
-  }
+  );
+
+  document.getElementById("candidateSummary").innerHTML = htmlText;
+
+  // Show content, hide loading
+  document.getElementById("summaryLoading").classList.add("hidden");
+  document.getElementById("summaryContent").classList.remove("hidden");
+} else {
+  // Show error
+  document.getElementById("summaryErrorMessage").textContent =
+    data.error || "Unknown error occurred";
+  document.getElementById("summaryLoading").classList.add("hidden");
+  document.getElementById("summaryError").classList.remove("hidden");
+}
+
+} catch (error) {
+  // Show error
+  document.getElementById("summaryErrorMessage").textContent =
+    "Network error: " + error.message;
+  document.getElementById("summaryLoading").classList.add("hidden");
+  document.getElementById("summaryError").classList.remove("hidden");
+} finally {
+  // Restore button state
+  button.disabled = false;
+  button.innerHTML = originalText;
+}
+
 }
 
 // Close modal when clicking outside
