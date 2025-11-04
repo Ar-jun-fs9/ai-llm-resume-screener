@@ -144,23 +144,24 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 ## 🏗️ Project Structure
 
 ```
-├── app.py                     # Main Flask application
-├── src/
-│   ├── extract_text.py        # PDF/DOCX text extraction
-│   ├── preprocess.py          # Text preprocessing & cleaning
-│   ├── embeddings.py          # Sentence transformer embeddings
-│   ├── similarity.py          # Cosine similarity calculation
-│   ├── rank_candidates.py     # Candidate ranking & CSV export
-│   └── local_llm.py           # TinyLlama integration
-├── templates/
-│   └── index.html             # Main web interface
-├── static/
-│   ├── css/
-│   │   └── style.css          # Custom styles
-│   └── js/
-│       └── index.js           # Frontend interactions
-├── output/                    # Generated CSV files
-└── requirements.txt           # Python dependencies
+tiny-llama-rag/
+├── 📄 app.py                          # Main Flask application
+├── 📁 src/                            # Core Python modules
+│   ├── 📄 extract_text.py             # PDF/DOCX text extraction
+│   ├── 📄 preprocess.py               # Text preprocessing & cleaning
+│   ├── 📄 embeddings.py               # Sentence transformer embeddings
+│   ├── 📄 similarity.py               # Cosine similarity calculation
+│   ├── 📄 rank_candidates.py          # Candidate ranking & CSV export
+│   └── 📄 local_llm.py                # TinyLlama integration
+├── 📁 templates/
+│   └── 📄 index.html                  # Main web interface
+├── 📁 static/
+│   ├── 📁 css/
+│   │   └── 📄 style.css               # Custom styles
+│   └── 📁 js/
+│       └── 📄 index.js                # Frontend interactions
+├── 📁 output/                         # Generated CSV files
+└── 📄 requirements.txt                # Python dependencies
 ```
 
 ---
@@ -187,5 +188,13 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 **License**
 
 [![License](https://img.shields.io/badge/license-MIT-black.svg?labelColor=orange)](#)
+
+<div align="center">
+   
+  **[⬆ Back to Top](#tiny-llama-rag)**
+  
+</div>
+
+
 
 
