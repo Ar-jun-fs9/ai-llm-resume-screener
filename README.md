@@ -184,9 +184,8 @@ Using **TinyLlama-1.1B-Chat-v1.0** for local LLM analysis:
 
 ---
 
-**Built with**
+**License**
 
-[![Made with Python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-black.svg?labelColor=orange)](#)
 
 
