@@ -191,9 +191,7 @@ tiny-llama-rag/
 [![License](https://img.shields.io/badge/license-MIT-black.svg?labelColor=orange)](#)
 
 <div align="center">
-   
   **[⬆ Back to Top](#ai-powered-resume-screener-with-llm)**
-  
 </div>
 
 
