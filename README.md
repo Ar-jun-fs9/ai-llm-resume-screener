@@ -7,7 +7,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-Web%20Framework-green.svg)](https://flask.palletsprojects.com)
-[![Gemini 2.0 Flash](https://img.shields.io/badge/Gemini-2.0%20Flash-4285F4.svg)](https://ai.google.dev/gemini-api/docs)
+[![Gemini 2.0 Flash](https://img.shields.io/badge/LLM%20Model-Gemini%202.0%20Flash-4285F4.svg)](https://ai.google.dev/gemini-api/docs)
 [![Embedding Model](https://img.shields.io/badge/Embedding--Model-all--MiniLM--L6--v2-lightgrey.svg)](https://www.sbert.net/docs/pretrained_models.html#sentence-transformersall-minilm-l6-v2)
 
 _Process resumes, rank candidates by job fit, and generate AI summaries with Google Gemini 2.0 Flash_
