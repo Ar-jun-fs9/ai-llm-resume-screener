@@ -1,3 +1,18 @@
+# flask
+# sentence-transformers
+# scikit-learn
+# pdfminer.six
+# python-docx
+# pandas
+# werkzeug
+# transformers
+# requests
+# python-dotenv
+# google-generativeai
+
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 flask
 sentence-transformers
 scikit-learn
@@ -9,3 +24,4 @@ transformers
 requests
 python-dotenv
 google-generativeai
+torch==2.1.2+cpu
