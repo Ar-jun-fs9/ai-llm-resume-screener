@@ -13,15 +13,17 @@
 
 --extra-index-url https://download.pytorch.org/whl/cpu
 
+numpy<2.0
+torch==2.1.2+cpu
+sentence-transformers==2.7.0
+transformers==4.39.3
+
 flask
-sentence-transformers
 scikit-learn
 pdfminer.six
 python-docx
 pandas
 werkzeug
-transformers
 requests
 python-dotenv
 google-generativeai
-torch==2.1.2+cpu
