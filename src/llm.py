@@ -5,6 +5,7 @@ LLM module for AI-powered resume summarization using Google Gemini
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
+from google.api_core.exceptions import ResourceExhausted
 
 # Load environment variables
 load_dotenv()
@@ -31,7 +32,7 @@ def generate_summary(resume_text, job_description, job_role="Data Analyst"):
         job_role (str): Target job role
 
     Returns:
-        str: AI-generated summary with numbered sections
+        str: AI-generated summary with numbered sections or user-friendly error message
     """
     try:
         prompt = f"""
@@ -63,6 +64,13 @@ Instructions:
         else:
             return "Unable to generate summary. Please try again."
 
+    except ResourceExhausted:
+        # Catch quota exceeded (HTTP 429)
+        return """
+         We're currently unable to generate a summary because the API usage limit has been reached.
+         Please contact support via <a href="https://github.com/Ar-jun-fs9" target="_blank">https://github.com/Ar-jun-fs9</a>.
+        """
+
     except Exception as e:
         return f"Error generating summary: {str(e)}"
 
@@ -76,7 +84,7 @@ def generate_quick_summary(resume_text, job_role="Data Analyst"):
         job_role (str): Target job role
 
     Returns:
-        str: Short summary
+        str: Short summary or user-friendly error message
     """
     try:
         prompt = f"""
@@ -96,6 +104,10 @@ Instructions:
             return response.text.strip()
         else:
             return "Unable to generate quick summary."
+
+    except ResourceExhausted:
+        # Catch quota exceeded (HTTP 429)
+        return "Quick summary cannot be generated right now. API quota exceeded. Please try again later or use a different model."
 
     except Exception as e:
         return f"Error generating quick summary: {str(e)}"
