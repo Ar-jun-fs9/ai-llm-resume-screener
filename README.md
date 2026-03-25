@@ -10,6 +10,8 @@
 [![LLM Model: TinyLlama-1.1B-Chat-v1.0](https://img.shields.io/badge/LLM%20Model-TinyLlama--1.1B--Chat--v1.0-FF6F00.svg)](https://huggingface.co/TinyLlama)
 [![Embedding Model](https://img.shields.io/badge/Embedding--Model-all--MiniLM--L6--v2-lightgrey.svg)](https://www.sbert.net/docs/pretrained_models.html#sentence-transformersall-minilm-l6-v2)
 
+🌐 **[Live Demo](https://ai-llm-resume-screener-production.up.railway.app/)**
+
 _Process resumes, rank candidates by job fit, and generate AI summaries with Google Gemini 2.0 Flash_
 
 ![Page](assets/page.png)
