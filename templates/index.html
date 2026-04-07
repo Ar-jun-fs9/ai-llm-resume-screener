@@ -10,25 +10,40 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../static/css/style.css" />
-    <script src="../static/js/tailwindconfig.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              slate: {
+                50: '#f8fafc',
+                100: '#f1f5f9',
+                200: '#e2e8f0',
+                300: '#cbd5e1',
+                400: '#94a3b8',
+                500: '#64748b',
+                600: '#475569',
+                700: '#334155',
+                800: '#1e293b',
+                900: '#0f172a',
+              },
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body
-    class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen"
-  >
+  <body class="bg-white min-h-screen">
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-6xl mx-auto">
         <!-- Header Card -->
-        <div
-          class="bg-white rounded-2xl shadow-xl overflow-hidden animate-fade-in"
-        >
-          <div
-            class="bg-gradient-to-r from-blue-600 to-purple-600 text-center py-8"
-          >
-            <h1 class="text-4xl font-bold text-white mb-2">
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-slate-900 text-center py-8">
+            <h1 class="text-3xl font-bold text-white mb-2">
               <i class="fas fa-robot mr-3"></i>
-              AI-Powered Resume Screener
+              AI Resume Screener
             </h1>
-            <p class="text-blue-100 text-lg">
+            <p class="text-slate-400 text-base">
               Upload resumes and job description to rank candidates using AI
             </p>
           </div>
@@ -38,12 +53,12 @@
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <!-- Resume Upload Section -->
                 <div class="space-y-4">
-                  <label class="block text-lg font-semibold text-gray-800">
-                    <i class="fas fa-file-upload mr-2 text-blue-500"></i>
+                  <label class="block text-lg font-semibold text-slate-700">
+                    <i class="fas fa-file-upload mr-2 text-slate-600"></i>
                     Upload Resumes (PDF/DOCX)
                   </label>
                   <div
-                    class="upload-zone rounded-xl p-8 text-center cursor-pointer border-2 border-dashed border-blue-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300"
+                    class="upload-zone rounded-lg p-8 text-center cursor-pointer border-2 border-dashed border-slate-300 hover:border-slate-500 hover:bg-slate-50 transition-all duration-200"
                     id="resumeUpload"
                   >
                     <input
@@ -56,15 +71,15 @@
                     />
                     <div class="upload-content">
                       <i
-                        class="fas fa-cloud-upload-alt text-4xl text-blue-500 mb-4"
+                        class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-4"
                       ></i>
-                      <p class="text-gray-700 font-medium mb-2">
+                      <p class="text-slate-700 font-medium mb-2">
                         Drag and drop resume files here
                       </p>
-                      <p class="text-gray-500 text-sm mb-2">
+                      <p class="text-slate-500 text-sm mb-2">
                         or click to select files
                       </p>
-                      <p class="text-gray-400 text-xs">Supported: PDF, DOCX</p>
+                      <p class="text-slate-400 text-xs">Supported: PDF, DOCX</p>
                     </div>
                   </div>
                   <div
@@ -75,12 +90,12 @@
 
                 <!-- Job Description Upload Section -->
                 <div class="space-y-4">
-                  <label class="block text-lg font-semibold text-gray-800">
-                    <i class="fas fa-file-alt mr-2 text-green-500"></i>
+                  <label class="block text-lg font-semibold text-slate-700">
+                    <i class="fas fa-file-alt mr-2 text-slate-600"></i>
                     Job Description (TXT)
                   </label>
                   <div
-                    class="upload-zone rounded-xl p-8 text-center cursor-pointer border-2 border-dashed border-green-300 hover:border-green-500 hover:bg-green-50 transition-all duration-300"
+                    class="upload-zone rounded-lg p-8 text-center cursor-pointer border-2 border-dashed border-slate-300 hover:border-slate-500 hover:bg-slate-50 transition-all duration-200"
                     id="jobUpload"
                   >
                     <input
@@ -92,15 +107,15 @@
                     />
                     <div class="upload-content">
                       <i
-                        class="fas fa-file-upload text-4xl text-green-500 mb-4"
+                        class="fas fa-file-lines text-4xl text-slate-400 mb-4"
                       ></i>
-                      <p class="text-gray-700 font-medium mb-2">
+                      <p class="text-slate-700 font-medium mb-2">
                         Drag and drop job description here
                       </p>
-                      <p class="text-gray-500 text-sm mb-2">
+                      <p class="text-slate-500 text-sm mb-2">
                         or click to select file
                       </p>
-                      <p class="text-gray-400 text-xs">Format: TXT only</p>
+                      <p class="text-slate-400 text-xs">Format: TXT only</p>
                     </div>
                   </div>
                   <div id="jobFile" class="space-y-2"></div>
@@ -111,7 +126,7 @@
               <div class="text-center">
                 <button
                   type="button"
-                  class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  class="bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-8 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                   id="rankBtn"
                   disabled
                 >
@@ -127,10 +142,10 @@
               id="loadingSpinner"
             >
               <div
-                class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm text-blue-600"
+                class="inline-flex items-center px-4 py-2 font-medium leading-6 text-sm text-slate-600"
               >
                 <svg
-                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"
+                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-slate-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -154,12 +169,10 @@
             </div>
 
             <!-- Results Section -->
-            <div id="resultsSection" class="mt-8 hidden animate-slide-up">
-              <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div
-                  class="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4"
-                >
-                  <h3 class="text-xl font-bold">
+            <div id="resultsSection" class="mt-8 hidden">
+              <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-800 text-white p-4">
+                  <h3 class="text-lg font-semibold">
                     <i class="fas fa-trophy mr-2"></i>
                     Ranked Candidates
                   </h3>
@@ -167,28 +180,28 @@
 
                 <div class="overflow-x-auto">
                   <table
-                    class="min-w-full divide-y divide-gray-200"
+                    class="min-w-full divide-y divide-slate-200"
                     id="resultsTable"
                   >
-                    <thead class="bg-gray-50">
+                    <thead class="bg-slate-50">
                       <tr>
                         <th
-                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
                         >
                           Rank
                         </th>
                         <th
-                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
                         >
                           Candidate
                         </th>
                         <th
-                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
                         >
                           Similarity Score
                         </th>
                         <th
-                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider"
                         >
                           Action
                         </th>
@@ -196,20 +209,20 @@
                     </thead>
                     <tbody
                       id="resultsBody"
-                      class="bg-white divide-y divide-gray-200"
+                      class="bg-white divide-y divide-slate-200"
                     ></tbody>
                   </table>
                 </div>
 
-                <div class="p-4 bg-gray-50 flex flex-wrap gap-4 justify-center">
+                <div class="p-4 bg-slate-50 flex flex-wrap gap-3 justify-center">
                   <button
-                    class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                    class="bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
                     id="downloadBtn"
                   >
-                    <i class="fas fa-download mr-2"></i>Download Results (CSV)
+                    <i class="fas fa-download mr-2"></i>Download CSV
                   </button>
                   <button
-                    class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                    class="bg-slate-400 hover:bg-slate-500 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
                     id="clearPageBtn"
                   >
                     <i class="fas fa-trash-alt mr-2"></i>Clear Page
@@ -225,21 +238,19 @@
     <!-- Summary Modal -->
     <div
       id="summaryModal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4"
+      class="fixed inset-0 bg-slate-900/60 hidden z-50 flex items-center justify-center p-4"
     >
       <div
-        class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-slide-up flex flex-col"
+        class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
       >
-        <div
-          class="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-6 flex justify-between items-center flex-shrink-0"
-        >
-          <h2 class="text-2xl font-bold">
+        <div class="bg-slate-800 text-white p-5 flex justify-between items-center flex-shrink-0">
+          <h2 class="text-xl font-semibold">
             <i class="fas fa-robot mr-2"></i>
             AI Resume Summary
           </h2>
           <button
             type="button"
-            class="text-white hover:text-gray-200 text-2xl"
+            class="text-slate-300 hover:text-white text-xl"
             onclick="closeModal()"
           >
             <i class="fas fa-times"></i>
@@ -250,10 +261,10 @@
           <div class="p-6">
             <div id="summaryLoading" class="text-center py-8">
               <div
-                class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm text-blue-600"
+                class="inline-flex items-center px-4 py-2 font-medium leading-6 text-sm text-slate-600"
               >
                 <svg
-                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600"
+                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-slate-600"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -277,23 +288,23 @@
             </div>
 
             <div id="summaryContent" class="hidden space-y-4">
-              <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+              <div class="bg-slate-50 border-l-4 border-slate-600 p-4 rounded">
                 <h4
                   id="summaryCandidateName"
-                  class="text-blue-800 font-semibold"
+                  class="text-slate-800 font-medium"
                 ></h4>
               </div>
 
               <div class="space-y-3">
                 <h5
-                  class="text-lg font-semibold text-gray-800 flex items-center"
+                  class="text-base font-medium text-slate-800 flex items-center"
                 >
-                  <i class="fas fa-brain mr-2 text-purple-500"></i>
+                  <i class="fas fa-brain mr-2 text-slate-600"></i>
                   AI Analysis & Summary
                 </h5>
                 <div
                   id="candidateSummary"
-                  class="bg-gray-50 border rounded-lg p-4 whitespace-pre-wrap"
+                  class="bg-slate-50 border rounded-lg p-4 whitespace-pre-wrap text-sm text-slate-700"
                 ></div>
               </div>
             </div>
@@ -302,17 +313,16 @@
               id="summaryError"
               class="hidden bg-red-50 border border-red-200 rounded-lg p-4"
             >
-              <div class="flex items-center text-red-800">
+              <div class="flex items-center text-red-700">
                 <i class="fas fa-exclamation-triangle mr-2"></i>
                 <span id="summaryErrorMessage"></span>
               </div>
             </div>
 
-            <!-- Close button moved inside scrollable area -->
-            <div class="bg-gray-50 p-4 text-right mt-6 rounded-lg">
+            <div class="bg-slate-50 p-4 text-right mt-6 rounded-lg">
               <button
                 type="button"
-                class="bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                class="bg-slate-600 hover:bg-slate-500 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm"
                 onclick="closeModal()"
               >
                 Close
